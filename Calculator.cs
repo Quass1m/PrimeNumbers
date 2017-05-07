@@ -17,8 +17,13 @@ namespace PrimeNumbers
             {
                 for (long i = 2; i <= maxNumber; i++)
                 {
-                    if (CheckIfPrime(i))
-                        AddNumber(stream, i);
+                    var perNumberTime = new Stopwatch();
+                    perNumberTime.Start();
+                    bool isPrime = IsPrime(i);
+                    perNumberTime.Stop();
+
+                    if (isPrime)
+                        AddNumber(stream, i, perNumberTime.ElapsedTicks);
                 }
             }
             watch.Stop();
@@ -26,13 +31,13 @@ namespace PrimeNumbers
             Console.WriteLine($"Calculations finished in {watch.Elapsed.TotalSeconds}s. Files written to: {filePath}");
         }
 
-        private static void AddNumber(FileStream fs, long value)
+        private static void AddNumber(FileStream fs, long value, long ticks)
         {
-            byte[] info = new UTF8Encoding(true).GetBytes(value.ToString() + "\r\n");
+            byte[] info = new UTF8Encoding(true).GetBytes(value.ToString() + "\t" + ticks + " ticks" + "\r\n");
             fs.WriteAsync(info, 0, info.Length);
         }
 
-        private bool CheckIfPrime(long number)
+        private bool IsPrime(long number)
         {
             if (number == 0)
                 return false;
