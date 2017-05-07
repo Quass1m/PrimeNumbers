@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrimeNumbers
 {
@@ -10,6 +6,17 @@ namespace PrimeNumbers
     {
         static void Main(string[] args)
         {
+            Calculator calculator = new Calculator();
+            long maxNumber = 1000;
+            string filePath = @"numbers.txt";
+
+            calculator.Calculate(maxNumber, filePath);
+
+
+
+
+            Console.ReadKey();
+            return;
         }
     }
 }
