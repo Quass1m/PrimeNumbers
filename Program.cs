@@ -10,7 +10,7 @@ namespace PrimeNumbers
             long maxNumber = 1000000;
             string filePath = @"numbers.txt";
 
-            calculator.Calculate(maxNumber, filePath);
+            calculator.CalculateAsync(maxNumber, filePath);
 
 
 
